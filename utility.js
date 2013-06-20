@@ -105,6 +105,7 @@ module.exports = function utility()
     }
 
 }
+//adding data to mongo data-base
 function insertToDb (data,done){
     data._id=new Date().getTime().toString();
     collection.insert(data,function (err, inserted) {
