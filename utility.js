@@ -1,5 +1,5 @@
 var maongoObj=require("./MongoInstance.js");
-var collection= maongoObj.getCollection();
+//var collection= maongoObj.getCollection();
 module.exports = function utility()
 {
     var https = require('https');
@@ -54,13 +54,9 @@ module.exports = function utility()
                     reqStats.res_time_per_req= self.convertMS(new Date().getTime()-reqStartTime) ;
                     reqStats.res_status=res.statusCode;
                     reqStats.req_name= reqName;
-                    insertToDb(reqStats,function(){
-                        if(cookieState){
-                            resFunc(cookieSession,reqStats);
-                        }else{
-                            resFunc(reqStats);
-                        }
-                    });
+                   // insertToDb(reqStats,function(){
+                        resFunc(reqStats);
+                   // });
                 }
             });
             res.on('error', function (e) {
@@ -71,7 +67,9 @@ module.exports = function utility()
                     reqStats.clients--;
                     reqStats.errors_resp++;
                     reqStats.res_status=res.statusCode;
-                    insertToDb(reqStats);
+                   // insertToDb(reqStats,function(){
+                        resFunc(reqStats);
+                    //});
                     resFunc(reqStats);
                 }
             });
@@ -83,7 +81,9 @@ module.exports = function utility()
                 reqStats.total_error_req_time_for_machine= reqStats.total_error_req_time_for_machine+(new Date().getTime()-reqStartTime);
                 reqStats.inprocReq--;
                 reqStats.errors_req++;
-                self.insertToDb(reqStats);
+               // insertToDb(reqStats,function(){
+                    resFunc(reqStats);
+               // });
                 resFunc(reqStats);
             }
         });
@@ -105,7 +105,7 @@ module.exports = function utility()
     }
 
 }
-//adding data to mongo data-base
+//insert data to db
 function insertToDb (data,done){
     data._id=new Date().getTime().toString();
     collection.insert(data,function (err, inserted) {

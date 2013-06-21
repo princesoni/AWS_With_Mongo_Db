@@ -1,0 +1,10 @@
+{
+    "mongo": {
+        "host": "ec2-50-17-43-204.compute-1.amazonaws.com",
+        "port": 27017,
+        "database_name": "prince",
+        "collection_name": "today1234564",
+        "username": "user",
+        "password": "name"
+    }
+}
