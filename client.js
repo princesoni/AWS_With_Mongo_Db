@@ -8,8 +8,8 @@ var https = require('https');
 var http = require('http');
 var requestNumber = 0;
 var config = {
-    n: 1,
-    concurrency: 1
+    n: 2,
+    concurrency: 2
 };
 var stats = {
     clients: 0,
