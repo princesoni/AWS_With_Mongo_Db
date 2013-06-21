@@ -1,9 +1,9 @@
 {
     "mongo": {
-        "host": "ec2-50-17-43-204.compute-1.amazonaws.com",
+        "host": "ec2-54-242-78-158.compute-1.amazonaws.com",
         "port": 27017,
-        "database_name": "prince",
-        "collection_name": "today1234564",
+        "database_name": "Appce",
+        "collection_name": "AcsLoadData",
         "username": "user",
         "password": "name"
     }

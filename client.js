@@ -1,10 +1,8 @@
 var maongoObj=require("./MongoInstance.js");
 var MyTestObj;
 var utilitiesObj;
-//maongoObj.startConnection(collectionInit);
-utilitiesObj = require('./utility.js');
-MyTestObj=require("./MyTest.js");
-//startLoadTimer();
+maongoObj.startConnection(collectionInit);
+
 var colors = require('colors');
 var https = require('https');
 var http = require('http');
@@ -32,13 +30,16 @@ var requestStats = {
     total_error_req_time_for_machine: 0,
     first_req_time:new Date().getTime()
 };
-//function collectionInit(){
+function collectionInit(){
+    utilitiesObj = require('./utility.js');
+    MyTestObj=require("./MyTest.js");
+    startLoadTimer();
+}
 
-//}
 
 function createLoadCyle() {
 
-     stats.inproc++;
+    stats.inproc++;
      var uniqueName = "User" + Math.random().toString(36).slice(2);
      var myTest=new MyTestObj();
      var array_of_functions=myTest.executeFunction();
@@ -77,7 +78,7 @@ function createLoadCyle() {
 
 
 }
-//function startLoadTimer(){
+function startLoadTimer(){
     var loadTimer = setInterval(function () {
 
         while (config.n > requestStats.clients + stats.inproc && stats.inproc < config.concurrency) {
@@ -89,7 +90,7 @@ function createLoadCyle() {
         }
     }, 500);
 
-//}
+}
 
 function beforeEachRequest(reqName) {
     requestStats.inprocReq++;

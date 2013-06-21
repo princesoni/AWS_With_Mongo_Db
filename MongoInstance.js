@@ -1,12 +1,26 @@
 var MongoInstance = function MongoInstance(){
-   // this.Db = require('mongodb').Db;
-    //this.Server = require('mongodb').Server;
-    //this.dataBaseObj=require("./mongoConfig.json")
-    //this.mongoObj=this.dataBaseObj.mongo;
-    //this.client = new this.Db(this.mongoObj.database_name, new this.Server(this.mongoObj.host, this.mongoObj.port, {}), {safe: true,auto_reconnect: true});
-    //this.collectionInst;
+    this.Db = require('mongodb').Db;
+    this.Server = require('mongodb').Server;
+    this.dataBaseObj=require("./mongoConfig.json")
+    this.mongoObj=this.dataBaseObj.mongo;
+    this.client = new this.Db(this.mongoObj.database_name, new this.Server(this.mongoObj.host, this.mongoObj.port, {}), {safe: true,auto_reconnect: true});
+    this.collectionInst;
     this.cookieeInst;
+
     /*this.startConnection = function(resfunction){
+        var self=this;
+        this.client.open(function(){
+
+
+                collection =self.client.collection(self.mongoObj.collection_name);
+                self.collectionInst=collection;
+                resfunction();
+
+            //return;
+        });
+    };*/
+
+    this.startConnection = function(resfunction){
         var self=this;
         this.client.open(function(){
             self.client.authenticate("prince","soni", function(err, res) {
@@ -21,7 +35,7 @@ var MongoInstance = function MongoInstance(){
             //return;
         });
       };
-*/
+
     this.getCollectionObj = function(resfunction){
       var self=this;
         this.client.open(function(){
