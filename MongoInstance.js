@@ -26,7 +26,7 @@ var MongoInstance = function MongoInstance(){
             self.client.authenticate("prince","soni", function(err, res) {
                 // callback
 
-                 console.log("hoo gyaaaaaaaa")
+                 
 
             collection =self.client.collection(self.mongoObj.collection_name);
             self.collectionInst=collection;
